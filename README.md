@@ -8,6 +8,10 @@ notification popups, keeps the display awake, watches capture and microphone
 state, and keeps an unmistakable session timer in the bar. When you finish,
 it restores the settings you had before the presentation.
 
+| Preflight | On air |
+| --- | --- |
+| ![Scrim preflight](docs/screenshots/preflight.png) | ![Scrim protecting an active presentation](docs/screenshots/on-air.png) |
+
 ## What works in 0.1.0
 
 - Manual presentation sessions from the bar, keyboard, or CLI
@@ -21,18 +25,20 @@ it restores the settings you had before the presentation.
 
 ## Install
 
-Once this directory is published as a git repository:
-
 ```bash
 omarchy plugin add https://github.com/e1i3or/scrim.git --enable
 ```
 
+Scrim targets Omarchy Quattro and uses the Hyprland, notification, idle, and
+PipeWire services already provided by the stock Omarchy shell. It has no
+external runtime dependencies and requires no elevated privileges.
+
 For local development:
 
 ```bash
-ln -sfn "$PWD" ~/.config/omarchy/plugins/scrim
+ln -sfn "$PWD" ~/.config/omarchy/plugins/io.github.e1i3or.scrim
 omarchy-shell shell rescanPlugins
-omarchy plugin enable scrim
+omarchy plugin enable io.github.e1i3or.scrim
 ```
 
 The shell hot-reloads files in the user plugin directory. If a service instance
@@ -52,6 +58,17 @@ Omarchy files:
 ```lua
 o.bind("SUPER + SHIFT + P", "Scrim presentation mode", "omarchy-shell scrim toggle")
 ```
+
+## Remove
+
+```bash
+omarchy plugin remove io.github.e1i3or.scrim
+```
+
+Removal does not delete the optional session-state directory. If Scrim is not
+active and you also want to remove that data, delete
+`$XDG_STATE_HOME/omarchy/plugins/scrim` (or
+`~/.local/state/omarchy/plugins/scrim` when `$XDG_STATE_HOME` is unset).
 
 ## Safety model
 

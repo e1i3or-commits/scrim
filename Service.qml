@@ -188,7 +188,7 @@ Item {
     id: stateDirProcess
     command: ["mkdir", "-p", root.stateDir]
     running: true
-    onExited: function(exitCode, exitStatus) {
+    onExited: function(exitCode) {
       if (exitCode !== 0) {
         console.warn("scrim: could not create state directory")
         return
