@@ -1,0 +1,70 @@
+{
+  "schemaVersion": 1,
+  "id": "scrim",
+  "name": "Scrim",
+  "version": "0.1.0",
+  "author": "Kai Kaapro",
+  "license": "MIT",
+  "homepage": "https://github.com/e1i3or/scrim",
+  "repository": "https://github.com/e1i3or/scrim",
+  "description": "A privacy-aware presentation mode for Omarchy. Share the stage, not your desktop.",
+  "kinds": [
+    "service",
+    "bar-widget"
+  ],
+  "entryPoints": {
+    "service": "Service.qml",
+    "barWidget": "BarWidget.qml"
+  },
+  "barWidget": {
+    "displayName": "Scrim",
+    "description": "Preflight, protect, and monitor presentation sessions from the Omarchy bar.",
+    "category": "Productivity",
+    "aliases": ["present", "presentation", "screen-share", "privacy"],
+    "allowMultiple": false,
+    "defaultSection": "right",
+    "defaults": {
+      "autoProtect": true,
+      "protectNotifications": true,
+      "keepAwake": true,
+      "captureGraceMs": 1800,
+      "showWhenIdle": true
+    },
+    "schema": [
+      {
+        "key": "autoProtect",
+        "type": "boolean",
+        "label": "Protect screen shares automatically",
+        "defaultValue": true
+      },
+      {
+        "key": "protectNotifications",
+        "type": "boolean",
+        "label": "Silence notifications while presenting",
+        "defaultValue": true
+      },
+      {
+        "key": "keepAwake",
+        "type": "boolean",
+        "label": "Keep the screen awake while presenting",
+        "defaultValue": true
+      },
+      {
+        "key": "captureGraceMs",
+        "type": "integer",
+        "label": "Ignore captures shorter than (ms)",
+        "min": 0,
+        "max": 10000,
+        "step": 250,
+        "defaultValue": 1800,
+        "description": "Prevents ordinary screenshots from starting a presentation session."
+      },
+      {
+        "key": "showWhenIdle",
+        "type": "boolean",
+        "label": "Keep Scrim visible when idle",
+        "defaultValue": true
+      }
+    ]
+  }
+}

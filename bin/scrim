@@ -1,0 +1,35 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+usage() {
+  printf '%s\n' \
+    'Usage: scrim <start|stop|toggle|status|preflight>' \
+    '' \
+    'Control the Scrim presentation session through omarchy-shell.'
+}
+
+case "${1:-}" in
+  start|on|begin)
+    omarchy-shell scrim begin manual
+    ;;
+  stop|off|end)
+    omarchy-shell scrim end
+    ;;
+  toggle)
+    omarchy-shell scrim toggle
+    ;;
+  status)
+    omarchy-shell scrim status
+    ;;
+  preflight)
+    omarchy-shell scrim preflight
+    ;;
+  help|-h|--help|'')
+    usage
+    ;;
+  *)
+    printf 'scrim: unknown command: %s\n' "$1" >&2
+    usage >&2
+    exit 2
+    ;;
+esac
