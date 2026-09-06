@@ -26,7 +26,7 @@ it restores the settings you had before the presentation.
 ## Install
 
 ```bash
-omarchy plugin add https://github.com/e1i3or/scrim.git --enable
+omarchy plugin add https://github.com/e1i3or-commits/scrim.git --enable
 ```
 
 Scrim targets Omarchy Quattro and uses the Hyprland, notification, idle, and
@@ -36,9 +36,9 @@ external runtime dependencies and requires no elevated privileges.
 For local development:
 
 ```bash
-ln -sfn "$PWD" ~/.config/omarchy/plugins/io.github.e1i3or.scrim
+ln -sfn "$PWD" ~/.config/omarchy/plugins/io.github.e1i3or-commits.scrim
 omarchy-shell shell rescanPlugins
-omarchy plugin enable io.github.e1i3or.scrim
+omarchy plugin enable io.github.e1i3or-commits.scrim
 ```
 
 The shell hot-reloads files in the user plugin directory. If a service instance
@@ -62,7 +62,7 @@ o.bind("SUPER + SHIFT + P", "Scrim presentation mode", "omarchy-shell scrim togg
 ## Remove
 
 ```bash
-omarchy plugin remove io.github.e1i3or.scrim
+omarchy plugin remove io.github.e1i3or-commits.scrim
 ```
 
 Removal does not delete the optional session-state directory. If Scrim is not

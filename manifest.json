@@ -1,12 +1,12 @@
 {
   "schemaVersion": 1,
-  "id": "io.github.e1i3or.scrim",
+  "id": "io.github.e1i3or-commits.scrim",
   "name": "Scrim",
   "version": "0.1.0",
   "author": "Kai Kaapro",
   "license": "MIT",
-  "homepage": "https://github.com/e1i3or/scrim",
-  "repository": "https://github.com/e1i3or/scrim",
+  "homepage": "https://github.com/e1i3or-commits/scrim",
+  "repository": "https://github.com/e1i3or-commits/scrim",
   "description": "A privacy-aware presentation mode for Omarchy. Share the stage, not your desktop.",
   "kinds": [
     "service",

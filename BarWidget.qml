@@ -6,10 +6,10 @@ import qs.Ui
 
 Panel {
   id: root
-  moduleName: "io.github.e1i3or.scrim"
+  moduleName: "io.github.e1i3or-commits.scrim"
 
   readonly property var service: bar && bar.shell && typeof bar.shell.serviceFor === "function"
-    ? bar.shell.serviceFor("io.github.e1i3or.scrim") : null
+    ? bar.shell.serviceFor("io.github.e1i3or-commits.scrim") : null
   readonly property bool active: service ? service.active === true : false
   readonly property bool showWhenIdle: setting("showWhenIdle", true)
   readonly property var audioSource: Pipewire.defaultAudioSource
