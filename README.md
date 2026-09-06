@@ -100,6 +100,11 @@ chmod +x scripts/check bin/scrim
 ./scripts/check
 ```
 
+The repository also keeps the maintainer's optional
+[named-workspace routing setup](extras/workspace-routing/README.md), including
+separate TourScale and personal Chrome launchers. It is not installed by the
+Scrim plugin.
+
 ## Acknowledgements
 
 [Curtain](https://github.com/fernandomenolli/omarchy-curtain) established a

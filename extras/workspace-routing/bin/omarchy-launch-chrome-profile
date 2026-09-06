@@ -1,0 +1,65 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+profile_name="${1:-}"
+shift || true
+
+case "$profile_name" in
+  tourscale)
+    profile_dir="Default"
+    workspace="1"
+    ;;
+  personal)
+    profile_dir="Profile 1"
+    workspace="5"
+    ;;
+  *)
+    printf 'Usage: omarchy-launch-chrome-profile <tourscale|personal> [URL ...]\n' >&2
+    exit 2
+    ;;
+esac
+
+chrome_bin="$(command -v google-chrome-stable || command -v google-chrome || true)"
+if [[ -z "$chrome_bin" ]]; then
+  printf 'Chrome is not installed.\n' >&2
+  exit 1
+fi
+
+before_file="$(mktemp)"
+trap 'rm -f -- "$before_file"' EXIT
+hyprctl clients -j \
+  | jq -r '.[] | select((.class | ascii_downcase) == "google-chrome") | .address' \
+  > "$before_file"
+
+targets=("$@")
+if (( ${#targets[@]} == 0 )); then
+  targets=("chrome://newtab")
+fi
+
+setsid uwsm-app -- "$chrome_bin" \
+  --profile-directory="$profile_dir" \
+  --new-window \
+  "${targets[@]}" >/dev/null 2>&1 &
+
+for ((attempt = 0; attempt < 80; attempt++)); do
+  address="$(
+    hyprctl clients -j | jq -r --rawfile before "$before_file" '
+      .[] as $client
+      | select(($client.class | ascii_downcase) == "google-chrome")
+      | select(($before | split("\n") | index($client.address)) == null)
+      | $client.address
+    ' | head -n 1
+  )"
+
+  if [[ -n "$address" ]]; then
+    hyprctl eval \
+      "hl.dispatch(hl.dsp.window.move({ window = \"address:$address\", workspace = \"$workspace\", follow = false }))" \
+      >/dev/null
+    exit 0
+  fi
+
+  sleep 0.1
+done
+
+printf 'Chrome opened without exposing a new window to Hyprland.\n' >&2
+exit 1

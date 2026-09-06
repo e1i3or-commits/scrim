@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Name=Chrome — Personal
+Comment=Open the personal Chrome profile on the personal workspace
+Exec=omarchy-launch-chrome-profile personal %U
+Icon=google-chrome
+Terminal=false
+Categories=Network;WebBrowser;
+MimeType=text/html;x-scheme-handler/http;x-scheme-handler/https;
